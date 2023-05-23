@@ -124,8 +124,22 @@ In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgäng
 - category_4: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
 
 ### ticket_status
+In der Tabelle `ticket_status` werden die vom Nutzer definierten möglichen Status der Vorgänge abgelegt. Auf diese werden auf von der Tabelle `ticket` aus verwiesen.
+
+#### Felder
+- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
+- mandant: Beschreibt, unter welchem Wice-Mandanten dieser Status gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- title: Titel bzw. Name des Status
+- color: Farbe des Status in der Anzeige, im hexadezimalen RGB-Format, z.B. `d3d3d3` für Hellgrau
 
 ### ticket_type
+In der Tabelle `ticket_type` werden die vom Nutzer definierten möglichen Arten von Vorgängen abgelegt. Auf diese werden von der Tabelle `ticket` aus verwiesen
+
+#### Felder
+- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
+- mandant: Beschreibt, unter welchem Wice-Mandanten dieser Ticket-Typ gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- title: Titel bzw. Name des Vorgangs-Typen
+- ticket_status: Die möglichen Status, die von Vorgängen dieses Typen eingenommen werden können
 
 ### note
 
