@@ -5,9 +5,11 @@ In dieser Anleitung wird das Schema der Wice-CRM-Datenbank erklärt
 - [Tabellen](#tabellen)
   * [address_contactperson](#address-contactperson)
   * [address_company](#address-company)
+  * [address_employee](#address-employee)
   * [ticket](#ticket)
-  * [note](#note)
   * [ticket_status](#ticket-status)
+  * [ticket_type](#ticket-type)
+  * [note](#note)
   * [chance](#chance)
   * [article](#article)
   * [category](#category)
@@ -82,11 +84,34 @@ In der Tabelle `address_company` werden Informationen über in Wice gespeicherte
 - street: Straße der Anschrift
 - street_number: Hausnummer der Anschrift
 
-### ticket
+### address_employee
 
-### note
+### ticket
+In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgänge abgelegt. Wichtig: Einzelne Einträge innerhalb eines Vorgangs sind in der Tabelle `note` zu finden.
+
+#### Felder
+- rowid: Eine in Wice eindeutige numerische ID der Organisation.
+- mandant: Beschreibt, unter welchem welchem Wice-Mandanten dieser Vorgang gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- subject: Initialer Betreff des Vorgangs
+- date: Datum, an welchem der Vorgang erstellt wurde, formatiert als YYYY-MM-DD
+- ticket_closed_on_date: Datum, an welchem der Vorgang ggf. abgeschlossen wurde, formatiert als YYYY-MM-DD
+- for_rowid: Referenziert die zum Vorgang zugehörige Organisation über deren rowid in der Tabelle `address_company`
+- employee_assigned: Referenziert den zugeordneten Mitarbeiter über dessen rowid in der Tabelle `address_employee`
+- ticket_type: Art des tickets, referenziert über die rowid in der Tabelle `ticket_type`
+- priority: Die Priorität des Vorgangs, ausgedrückt als ganze Zahl zwischen 1 und 5
+- in_progress: Indiziert, ob der Vorgang momentan aktiv ist. `1` steht für einen aktiven Status `0` oder `null` für einen inaktiven
+- status: Der aktuelle Status des Vorgangs, referenziert über dessen rowid in der Tabelle `ticket_status`
+- status_executed: Alle Status, die der Vorgang bisher durchlaufen hat. Formatiert als Reihe der jeweiligen rowids in chronologischer Reihenfolge von links nach rechts mit dem Separator `|`, z.B. `|185||186||192|`
+- category_1: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
+- category_2: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
+- category_3: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
+- category_4: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
 
 ### ticket_status
+
+### ticket_type
+
+### note
 
 ### chance
 
