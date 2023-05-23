@@ -85,7 +85,7 @@ In der Tabelle `address_company` werden Informationen über in Wice gespeicherte
 - street_number: Hausnummer der Anschrift
 
 ### address_employee
-In der Tabelle `address_employee` werden Daten über die in Wice registrierten Mitarbeiter abgelegt. 
+In der Tabelle `address_employee` werden Daten über die in Wice registrierten Mitarbeiter abgelegt. Auf diese wird u.A. von Vorgängen in der Tabelle `ticket` aus verwiesen
 
 #### Felder
 - rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
@@ -103,7 +103,7 @@ In der Tabelle `address_employee` werden Daten über die in Wice registrierten M
 - mobile_phone: Mobilfunknummer
 
 ### ticket
-In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgänge abgelegt. Wichtig: Einzelne Einträge innerhalb eines Vorgangs sind in der Tabelle `note` zu finden.
+In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgänge abgelegt. Jede Zeile beschreibt genau einen Vorgang. Wichtig: Einzelne Einträge innerhalb eines Vorgangs sind in der Tabelle `note` zu finden.
 
 #### Felder
 - rowid: Eine in Wice eindeutige numerische ID der Organisation.
@@ -114,7 +114,7 @@ In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgäng
 - for_rowid: Referenziert die zum Vorgang zugehörige Organisation über deren rowid in der Tabelle `address_company`
 - employee_assigned: Referenziert den zugeordneten Mitarbeiter über dessen rowid in der Tabelle `address_employee`
 - ticket_type: Art des tickets, referenziert über die rowid in der Tabelle `ticket_type`
-- priority: Die Priorität des Vorgangs, ausgedrückt als ganze Zahl zwischen 1 und 5
+- priority: Die Priorität des Vorgangs, ausgedrückt als ganze Zahl zwischen 1 und 10
 - in_progress: Indiziert, ob der Vorgang momentan aktiv ist. `1` steht für einen aktiven Status, `0` oder `null` für einen inaktiven
 - status: Der aktuelle Status des Vorgangs, referenziert über dessen rowid in der Tabelle `ticket_status`
 - status_executed: Alle Status, die der Vorgang bisher durchlaufen hat. Formatiert als Reihe der jeweiligen rowids in chronologischer Reihenfolge von links nach rechts mit dem Separator `|`, z.B. `|185||186||192|`
@@ -142,6 +142,19 @@ In der Tabelle `ticket_type` werden die vom Nutzer definierten möglichen Arten 
 - ticket_status: Die möglichen Status, die von Vorgängen dieses Typen eingenommen werden können
 
 ### note
+In der Tabelle `note` werden alle Einträge innerhalb von Vorgängen abgelegt. Jeder Eintrag bezieht auf genau einen Vorgang, und es kann beliebig viele Einträge pro Vorgang geben. Hier finden sich auch automatisierte Einträge, z.B. wenn der Status eines Vorgangs geändert wurde.
+
+#### Felder
+- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
+- mandant: Beschreibt, unter welchem Wice-Mandanten dieser Eintrag gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- ticket: Referenziert den zugehörigen Vorgang über dessen rowid in der Tabelle `ticket`
+- text: Inhalt des Eintrags
+- employee_assigned: Referenziert den zugeordneten Mitarbeiter über dessen rowid in der Tabelle `address_employee`
+- notify: Gesetzt, wenn ein weiterer Mitarbeiter über diese Notiz benachrichtigt wurde. Referenziert diesen über dessen rowid in der Tabelle `address_employee`
+- is_reply_to: Gesetzt, wenn diese Eintrag eine Antwort auf einen anderen Eintrag ist. Referenziert diesen über dessen rowid in der Tabelle `note`
+- contactperson: Referenziert die zugehörige Kontaktperson über deren rowid in der Tabelle `address_contactperson`
+- priority: Eingetragene Priorität, formatiert als ganze Zahl zwischen 1 und 10
+- last_update: Datum und Zeit, an dem der Eintrag erstellt wurde, formatiert als `YYYY-MM-DD hh-mm-ss`
 
 ### chance
 
