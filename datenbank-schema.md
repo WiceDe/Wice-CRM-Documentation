@@ -197,3 +197,11 @@ In der Tabelle `article` werden die eingetragenen Artikel abgelegt. Auf diese we
 - category_2: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
 
 ### category
+In der Tabelle `category` werden alle vom Nutzer definierten Kategorien abgelegt. Auf diese Tabelle wird von einer Vielzahl anderer Tabellen verwiesen.
+
+#### Felder
+- rowid: Eine in Wice eindeutige numerische ID der Kategorie.
+- mandant: Beschreibt, unter welchem Wice-Mandanten diese Kategorie gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- name: Name der Kategorie
+- description: Beschreibung der Kategorie
+- table_name: Name der Tabelle, die diese Kategorie benutzt, z.B. `address_contactperson`
