@@ -45,7 +45,7 @@ In der Tabelle `address_contactperson` werden Informationen über in Wice gespei
 - address_category_2: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
 - address_category_3: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
 - address_category_4: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
-- birthday: Datum des Geburtstags, formatiert als YYYY-MM-DD
+- birthday: Datum des Geburtstags, formatiert als `YYYY-MM-DD`
 - salutation: Titel bzw. Anschrift der Person, z.B. "Herr", "Frau", oder "Dr"
 - serial_salutation: Briefanschrift der Person, z.B. "Sehr geehrte Frau Mustermann"
 - private_country: Land der privaten Anschrift
@@ -93,7 +93,7 @@ In der Tabelle `address_employee` werden Daten über die in Wice registrierten M
 - firstname: Vorname des Mitarbeiters
 - name: Nachname des Mitarbeiters
 - deactivated: Indiziert, ob dieser Mitarbeiter deaktiviert wurde. `1` steht für einen deaktivierten Mitarbeiter, `0` für einen nicht deaktivierten.
-- birthday: Datum des Geburtstags, formatiert als YYYY-MM-DD
+- birthday: Datum des Geburtstags, formatiert als `YYYY-MM-DD`
 - department: Abteilung
 - position: Stelle/Position
 - email: Email-Addresse
@@ -109,8 +109,8 @@ In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgäng
 - rowid: Eine in Wice eindeutige numerische ID der Organisation.
 - mandant: Beschreibt, unter welchem welchem Wice-Mandanten dieser Vorgang gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
 - subject: Initialer Betreff des Vorgangs
-- date: Datum, an welchem der Vorgang erstellt wurde, formatiert als YYYY-MM-DD
-- ticket_closed_on_date: Datum, an welchem der Vorgang ggf. abgeschlossen wurde, formatiert als YYYY-MM-DD
+- date: Datum, an welchem der Vorgang erstellt wurde, formatiert als `YYYY-MM-DD
+- ticket_closed_on_date: Datum, an welchem der Vorgang ggf. abgeschlossen wurde, formatiert als `YYYY-MM-DD`
 - for_rowid: Referenziert die zum Vorgang zugehörige Organisation über deren rowid in der Tabelle `address_company`
 - employee_assigned: Referenziert den zugeordneten Mitarbeiter über dessen rowid in der Tabelle `address_employee`
 - ticket_type: Art des tickets, referenziert über die rowid in der Tabelle `ticket_type`
@@ -157,6 +157,28 @@ In der Tabelle `note` werden alle Einträge innerhalb von Vorgängen abgelegt. J
 - last_update: Datum und Zeit, an dem der Eintrag erstellt wurde, formatiert als `YYYY-MM-DD hh-mm-ss`
 
 ### chance
+In der Tabelle `chance` werden die eingetragenen Opportunities abgelegt.
+
+#### Felder
+- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
+- mandant: Beschreibt, unter welchem Wice-Mandanten diese Opportunity gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- description: Beschreibung der Opportunity
+- article: Bezieht sich auf den Artikel, um den es sich in der Opportunity handelt. Referenziert diesen über dessen rowid in der Tabelle `article`
+- articles_amount: Die Anzahl der Artikel in der Opportunity
+- ticket: Referenziert den zugehörigen Vorgang über dessen rowid in der Tabelle `ticket
+- salesman: Referenziert den zugeordneten Mitarbeiter über dessen rowid in der Tabelle `address_employee`
+- probability: Vom Nutzer eingetragene geplante Wahrscheinlichkeit der Fakturierung in Prozent
+- date: Datum, an dem die Opportunity eingetragen wurde, formatiert als `YYYY-MM-DD`
+- planned_for_year: Das geplante Jahr, in dem die Opportunity fakturiert werden soll. Formatiert als `YYYY`
+- planned_for_month: Der geplante Monat, in dem die Opportunity fakturiert werden soll. Formatiert als ganze Zahl zwischen 0 (Januar) und 11 (Dezember)
+- actual_sales_date: Das Datum der Fakturierung der Opportunity, formatiert als `YYYY-MM-DD`. Standardwert `0000-00-00`, solange die Opportunity noch nicht fakturiert wurde
+- sales_price: Der geplante Verkaufswert der Opportunity
+- purchase_price: Die geplanten Einkaufskosten der Opportunity
+- actual_sales_price: Der tatsächliche Verkaufswert der Opportunity nach Fakturierung. Standardwert `0`, solange die Opportunity noch nicht fakturiert wurde
+- actual_purchase_price: Die tatsächlichen Einkaufskosten der Opportunity nach Fakturierung. Standardwert `0`, solange die Opportunity noch nicht fakturiert wurde
+- discount_included_in_actual_sales_price: Rabatt der Fakturierung in Prozent, automatisch berechnet aus der Differenz des geplanten und tatsächlichen Verkaufswerts
+- discount_text: Vom Nutzer eingetragener Hintergrund des Rabatts
+- tax: Steuersatz der Opportunity in Prozent
 
 ### article
 
