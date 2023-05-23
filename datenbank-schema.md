@@ -85,6 +85,22 @@ In der Tabelle `address_company` werden Informationen über in Wice gespeicherte
 - street_number: Hausnummer der Anschrift
 
 ### address_employee
+In der Tabelle `address_employee` werden Daten über die in Wice registrierten Mitarbeiter abgelegt. 
+
+#### Felder
+- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
+- mandant: Beschreibt, unter welchem Wice-Mandanten dieser Mitarbeiter gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- firstname: Vorname des Mitarbeiters
+- name: Nachname des Mitarbeiters
+- deactivated: Indiziert, ob dieser Mitarbeiter deaktiviert wurde. `1` steht für einen deaktivierten Mitarbeiter, `0` für einen nicht deaktivierten.
+- birthday: Datum des Geburtstags, formatiert als YYYY-MM-DD
+- department: Abteilung
+- position: Stelle/Position
+- email: Email-Addresse
+- phone: Telefonnummer
+- privphone: Private Telefonnummer
+- fax: Faxnummer
+- mobile_phone: Mobilfunknummer
 
 ### ticket
 In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgänge abgelegt. Wichtig: Einzelne Einträge innerhalb eines Vorgangs sind in der Tabelle `note` zu finden.
@@ -99,7 +115,7 @@ In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgäng
 - employee_assigned: Referenziert den zugeordneten Mitarbeiter über dessen rowid in der Tabelle `address_employee`
 - ticket_type: Art des tickets, referenziert über die rowid in der Tabelle `ticket_type`
 - priority: Die Priorität des Vorgangs, ausgedrückt als ganze Zahl zwischen 1 und 5
-- in_progress: Indiziert, ob der Vorgang momentan aktiv ist. `1` steht für einen aktiven Status `0` oder `null` für einen inaktiven
+- in_progress: Indiziert, ob der Vorgang momentan aktiv ist. `1` steht für einen aktiven Status, `0` oder `null` für einen inaktiven
 - status: Der aktuelle Status des Vorgangs, referenziert über dessen rowid in der Tabelle `ticket_status`
 - status_executed: Alle Status, die der Vorgang bisher durchlaufen hat. Formatiert als Reihe der jeweiligen rowids in chronologischer Reihenfolge von links nach rechts mit dem Separator `|`, z.B. `|185||186||192|`
 - category_1: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
