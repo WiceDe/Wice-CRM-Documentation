@@ -127,7 +127,7 @@ In der Tabelle `ticket` werden Informationen über in Wice gespeicherte Vorgäng
 In der Tabelle `ticket_status` werden die vom Nutzer definierten möglichen Status der Vorgänge abgelegt. Auf diese werden auf von der Tabelle `ticket` aus verwiesen.
 
 #### Felder
-- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
+- rowid: Eine in Wice eindeutige numerische ID des Vorgang-Status.
 - mandant: Beschreibt, unter welchem Wice-Mandanten dieser Status gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
 - title: Titel bzw. Name des Status
 - color: Farbe des Status in der Anzeige, im hexadezimalen RGB-Format, z.B. `d3d3d3` für Hellgrau
@@ -136,8 +136,8 @@ In der Tabelle `ticket_status` werden die vom Nutzer definierten möglichen Stat
 In der Tabelle `ticket_type` werden die vom Nutzer definierten möglichen Arten von Vorgängen abgelegt. Auf diese werden von der Tabelle `ticket` aus verwiesen
 
 #### Felder
-- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
-- mandant: Beschreibt, unter welchem Wice-Mandanten dieser Ticket-Typ gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- rowid: Eine in Wice eindeutige numerische ID des Vorgangs-Typs.
+- mandant: Beschreibt, unter welchem Wice-Mandanten dieser Vorgangs-Typ gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
 - title: Titel bzw. Name des Vorgangs-Typen
 - ticket_status: Die möglichen Status, die von Vorgängen dieses Typen eingenommen werden können
 
@@ -145,7 +145,7 @@ In der Tabelle `ticket_type` werden die vom Nutzer definierten möglichen Arten 
 In der Tabelle `note` werden alle Einträge innerhalb von Vorgängen abgelegt. Jeder Eintrag bezieht auf genau einen Vorgang, und es kann beliebig viele Einträge pro Vorgang geben. Hier finden sich auch automatisierte Einträge, z.B. wenn der Status eines Vorgangs geändert wurde.
 
 #### Felder
-- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
+- rowid: Eine in Wice eindeutige numerische ID des Eintrags.
 - mandant: Beschreibt, unter welchem Wice-Mandanten dieser Eintrag gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
 - ticket: Referenziert den zugehörigen Vorgang über dessen rowid in der Tabelle `ticket`
 - text: Inhalt des Eintrags
@@ -160,7 +160,7 @@ In der Tabelle `note` werden alle Einträge innerhalb von Vorgängen abgelegt. J
 In der Tabelle `chance` werden die eingetragenen Opportunities abgelegt.
 
 #### Felder
-- rowid: Eine in Wice eindeutige numerische ID des Mitarbeiters.
+- rowid: Eine in Wice eindeutige numerische ID der Opportunity.
 - mandant: Beschreibt, unter welchem Wice-Mandanten diese Opportunity gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
 - description: Beschreibung der Opportunity
 - article: Bezieht sich auf den Artikel, um den es sich in der Opportunity handelt. Referenziert diesen über dessen rowid in der Tabelle `article`
@@ -181,5 +181,19 @@ In der Tabelle `chance` werden die eingetragenen Opportunities abgelegt.
 - tax: Steuersatz der Opportunity in Prozent
 
 ### article
+In der Tabelle `article` werden die eingetragenen Artikel abgelegt. Auf diese werden von der Tabelle `chance` aus verwiesen
+
+#### Felder
+- rowid: Eine in Wice eindeutige numerische ID des Aritkels.
+- mandant: Beschreibt, unter welchem Wice-Mandanten dieser Artikel gespeichert wurde. WICHTIG: Eine negative Zahl bedeutet, dass dieser Eintrag gelöscht wurde und sich im Papierkorb befindet
+- description: Name bzw. Kurzbeschreibung des Artikels
+- long_description: Detaillierte Beschreibung des Artikels
+- description_english: Name bzw. Kurzbeschreibung des Artikels in Englisch
+- long_description_english: Detaillierte Beschreibung des Artikels in Englisch
+- sales_price: Verkaufswert des Artikels pro Einheit
+- purchase_price: Einkaufskosten des Artikels pro Einheit
+- unit: Einheit, in welcher dieser Artikel gezählt wird
+- category_1: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
+- category_2: Zugeordnete Kategorie, referenziert über die rowid in der Tabelle `category`
 
 ### category
