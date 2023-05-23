@@ -3,12 +3,12 @@ In dieser Anleitung wird das Schema der Wice-CRM-Datenbank erklärt
 
 ## Inhaltsverzeichnis
 - [Tabellen](#tabellen)
-  * [address_contactperson](#address-contactperson)
-  * [address_company](#address-company)
-  * [address_employee](#address-employee)
+  * [address_contactperson](#address_contactperson)
+  * [address_company](#address_company)
+  * [address_employee](#address_employee)
   * [ticket](#ticket)
-  * [ticket_status](#ticket-status)
-  * [ticket_type](#ticket-type)
+  * [ticket_status](#ticket_status)
+  * [ticket_type](#ticket_type)
   * [note](#note)
   * [chance](#chance)
   * [article](#article)
