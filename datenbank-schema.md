@@ -1,6 +1,17 @@
 # Datenbank-Schema
 In dieser Anleitung wird das Schema der Wice-CRM-Datenbank erklärt
 
+## Inhaltsverzeichnis
+- [Tabellen](#tabellen)
+  * [address_contactperson](#address-contactperson)
+  * [address_company](#address-company)
+  * [ticket](#ticket)
+  * [note](#note)
+  * [ticket_status](#ticket-status)
+  * [chance](#chance)
+  * [article](#article)
+  * [category](#category)
+
 ## Tabellen
 Dieser Abschnitt beinhaltet Informationen über ausgewählte Tabellen und erklärt deren Zweck und Felder. Bestimmte Felder sind dabei nur für interne Funktionen relevant und werden ggf. nicht aufgelistet.
 
